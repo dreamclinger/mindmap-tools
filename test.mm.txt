@@ -1,0 +1,9 @@
+Root node
+	This is First level
+		this is Subnode
+			this is Subsubnode
+				this is Subsubsubnode
+		this is Subnode
+	this is Another first level
+		Another subnode with even longer text,\nbut fortunately it can be wrapped onto\nmultiple lines.
+

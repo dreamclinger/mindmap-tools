@@ -3,6 +3,7 @@
 # Create: 2014/11/29
 #-*- coding: UTF-8 -*- 
 import sys, time, encodings, types
+import codecs
 
 #global node ID
 unique_id = 1
@@ -116,5 +117,8 @@ if __name__ == '__main__':
         if x[1] > 1:  #ignore the node <map>
             words = ( formatwords(x[3].get('TEXT'))  or formatwords(x[3]).get('p') )
             if words is not None:
-                print (x[1]-2) *'\t', words
+                tabs = (x[1]-2) *'\t'
+                tabs = tabs.encode('utf8') 
+                words = words.encode('utf8') 
+                print tabs, words
     pass

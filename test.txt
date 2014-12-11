@@ -1,0 +1,59 @@
+  Next Gen Cognitive Radio(2006), cited > 2000
+	0.1Gap
+		limited bandwidth
+		increasing demand
+	0.Background
+		licensed band limited
+		however, usage increase
+		Fig1, [20]
+		The same statement as <Gap>
+	2.Cognitive Radio(CR)
+		the key to xG (DSA)
+		#use best available channel
+		1.determine (sensing)
+			key:unsued
+		2.select (manage)
+			key:best
+		3.coordinate (sharing)
+			key:harmless
+		4.vacate (mobility)
+			key:among
+		upper points: Fig2
+		#but adverse effects on traditional
+			challenge in cross-layer design
+			shown in Fig2
+	1.Dynamic Spectrum Access(DSA)
+		#due the <Background>
+		here we call it xG(Next Gen)
+		without interfere
+		opportunistic access
+		require high QoS
+	2.1CR technique overview
+		Define:
+			Capability
+				capture the variance
+				without any interference
+				defs  mmlinks = ../../Dropbox/mythinking.log
+			Reconfigurability
+				dynamically programmed
+		KRKL (.... Language)
+		Spectrum Holes[27], Fig3
+		Architecture[34], Fig4
+			RF-front end
+				Filter
+				LNA,AGC
+				PLL,VCO
+			#The RF end is the novel part
+			ADC
+				#require weak & wideband
+				NYQ: notch filter, MIMO(spatial)
+		Capability ->"Define"
+			Fig5, cognitive cycle, like "state-machine"
+			1.spectrum sensing
+				physical level
+			2.spectrum analysis
+				link layer and upper
+			3.spectrum decision
+				link layer and upper, e.g. QoS
+		Reconfigurability ->"Define"
+			freq, modulation, power, interoperability

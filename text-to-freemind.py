@@ -55,8 +55,17 @@ def set_node_properties(node, text):          ## node obj
     # convert literal \n into newlines
     if r'\n' in text:                         ##
         text = text.replace(r'\n', '\n')
+    pattern = 'mmlinks = '
+    link_r = None
+    if((text.find(pattern)!=-1)):
+        text_r = text.split(pattern)[0]
+        link_r = text.split(pattern)[1]
+    else:
+        text_r = text
 
-    node.set('TEXT', text)                    ##
+    if link_r is not None:
+        node.set('LINK', link_r)        
+    node.set('TEXT', text_r)                    ##
     node.set('CREATED', creation_time)
     node.set('MODIFIED', creation_time)
 

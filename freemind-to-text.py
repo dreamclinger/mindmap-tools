@@ -79,14 +79,13 @@ def get_xml_attrib(filename):
 def walkData(root_node, level, result_list):
     global unique_id
     temp_list =[unique_id, level, root_node.tag, root_node.attrib]
-    result_list.append(temp_list)
+    result_list.append(temp_list)                ## use temp of the list
     unique_id += 1
     children_node = root_node.getchildren()
     if len(children_node) == 0:
         return
     for child in children_node:
         walkData(child, level + 1, result_list)  ## conquer and divided
-    return
 
 #get xml data 
 def getXmlData(file_name):
@@ -99,6 +98,8 @@ def getXmlData(file_name):
 
 if __name__ == '__main__':
     global file_name                    
+    global prepare_longtext_level
+    global longtext_level
     try:
         file_name = sys.argv[1]
         if file_name == '-':
@@ -113,12 +114,25 @@ if __name__ == '__main__':
 
     R = getXmlData(file_name)
     for x in R:
+        ## prepare for richtext analysis
+        #print x
+        #if x[3] != 'node':
+        #    prepare_longtext_valid = 1
+        #    prepare_longtext_level = x[2] - 1
+        #elif prepare_longtext_valid and x[3] == 'html'
+        #    longtext_level = prepare_longtext_level
+        #else  # is normal node
+        #    prepare_longtext_valid = 0
+        #    longtext_valid = 0
+
         #x[1] shows the level/node's depth, print x[1], type(x[1])
         if x[1] > 1:  #ignore the node <map>
-            words = ( formatwords(x[3].get('TEXT'))  or formatwords(x[3]).get('p') )
+            words = formatwords(x[3].get('TEXT'))
+            links = formatwords(x[3].get('LINK'))
             if words is not None:
-                tabs = (x[1]-2) *'\t'
-                tabs = tabs.encode('utf8') 
-                words = words.encode('utf8') 
-                print tabs, words
+                tabs = ((x[1]-2) *'\t').encode('utf8') 
+                if links is None:
+                    print tabs, words
+                else:
+                    print tabs, words, 'mmlinks =',links
     pass

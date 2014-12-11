@@ -130,9 +130,11 @@ if __name__ == '__main__':
             words = formatwords(x[3].get('TEXT'))
             links = formatwords(x[3].get('LINK'))
             if words is not None:
+                words = words.encode('utf8')
                 tabs = ((x[1]-2) *'\t').encode('utf8') 
                 if links is None:
                     print tabs, words
                 else:
-                    print tabs, words, 'mmlinks =',links
+                    links = links.encode('utf8')
+                    print tabs, words, 'mmlinks=%s' %links
     pass

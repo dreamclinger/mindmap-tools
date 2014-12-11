@@ -55,11 +55,11 @@ def set_node_properties(node, text):          ## node obj
     # convert literal \n into newlines
     if r'\n' in text:                         ##
         text = text.replace(r'\n', '\n')
-    pattern = 'mmlinks = '
+    pattern = 'mmlinks='
     link_r = None
     if((text.find(pattern)!=-1)):
-        text_r = text.split(pattern)[0]
-        link_r = text.split(pattern)[1]
+        text_r = text.split(pattern)[0].strip()
+        link_r = text.split(pattern)[1].strip()
     else:
         text_r = text
 

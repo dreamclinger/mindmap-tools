@@ -2,7 +2,7 @@
 # Author: dreamclinger@gmail.com
 # Create: 2014/11/29
 #-*- coding: UTF-8 -*- 
-import sys, time, encodings, types, re
+import sys, time, encodings, types
 import codecs
 
 #global node ID
@@ -114,32 +114,27 @@ if __name__ == '__main__':
 
     R = getXmlData(file_name)
     for x in R:
+        ## prepare for richtext analysis
+        #print x
+        #if x[3] != 'node':
+        #    prepare_longtext_valid = 1
+        #    prepare_longtext_level = x[2] - 1
+        #elif prepare_longtext_valid and x[3] == 'html'
+        #    longtext_level = prepare_longtext_level
+        #else  # is normal node
+        #    prepare_longtext_valid = 0
+        #    longtext_valid = 0
+
         #x[1] shows the level/node's depth, print x[1], type(x[1])
         if x[1] > 1:  #ignore the node <map>
-            words = None
-            links = None
-            image = None
-            image_src = None
             words = formatwords(x[3].get('TEXT'))
             links = formatwords(x[3].get('LINK'))
-            image = re.match('img',x[2])
-            if image is not None:
-                image_src = x[3].get('src')
-            else:
-                pass
-
-            if links is not None:
-                links = links.encode('utf8')
-                tabs = ((x[1]-2)*'\t').encode('utf8')
-                print tabs, 'mmlink=%s' %links
-            elif image_src is not None:
-                image_src = image_src.encode('utf8')
-                tabs = ((x[1]-2-4)*'\t').encode('utf8')
-                print tabs, 'mmimage=%s' %image_src
-            elif words is not None:
+            if words is not None:
                 words = words.encode('utf8')
-                tabs = ((x[1]-2)*'\t').encode('utf8')
-                print tabs, words
-            else:
-                pass
+                tabs = ((x[1]-2) *'\t').encode('utf8') 
+                if links is None:
+                    print tabs, words
+                else:
+                    links = links.encode('utf8')
+                    print tabs, words, 'mmlinks=%s' %links
     pass

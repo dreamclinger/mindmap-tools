@@ -1,0 +1,22 @@
+#!/bin/sh
+#scripts name: mm2txt
+
+File_src=$1
+File_dst=$2
+
+#main function
+
+trap 'echo "file-error: check if paths of files are correct"; exit' ERR
+
+case $1 in
+   [-][-][hH][eE][lL][pP]|[-][hH]) 
+		echo 'transform the freemind file (.mm) to plain text (.txt)'
+		echo 'usage: mm2txt <File.mm> <File.txt>'
+        exit 0
+        ;;
+    *)
+		echo "generate $File_dst"
+		python freemind-to-text.py $File_src > $File_dst
+		exit 0 
+        ;;
+esac

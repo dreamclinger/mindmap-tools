@@ -1,0 +1,23 @@
+#!/bin/sh
+#scripts name: txt2mm
+
+File_src=$1
+File_dst=$2
+
+#main function
+
+trap 'echo "file-error: check if paths of files are correct"; exit' ERR
+
+case $1 in
+   [-][-][hH][eE][lL][pP]|[-][hH]) 
+		echo 'transform the txt to freemind format'
+		echo 'usage: txt2mm <File.txt> <File.mm>'
+		exit 0
+        ;;
+    *)
+		echo "generate $File_dst"
+		python text-to-freemind.py $File_src > $File_dst
+		python text-to-freemind-image.py $File_dst
+		exit 0 
+        ;;
+esac

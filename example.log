@@ -1,0 +1,18 @@
+ Transparent_OS_Setting
+	General
+		Idea: MintLinux
+			mmimage=./source/mintlinux.jpg
+		Object: Common apps
+		Need: (OR)
+			Theme
+			Extension
+			Setting
+		Example:
+			Console
+			WebBrowser
+			Example-Pdf 
+				mmlink=./source/Chapter01_examples.pdf
+	Suitable_Apps
+		Item2
+			mmlink=http://github.com/dreamclinger/solarized/
+		Chrome

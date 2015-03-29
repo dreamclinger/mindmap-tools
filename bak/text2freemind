@@ -1,3 +1,0 @@
-#!/bin/bash
-python text-to-freemind.py $1 | tee temp.log
-python text-to-freemind-image.py temp.log  | tee $1.mm 

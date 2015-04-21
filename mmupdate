@@ -1,0 +1,34 @@
+#!/usr/local/bin/python
+
+import glob
+import os, sys
+
+#print sys.argv
+sys_flag = 0
+
+if len(sys.argv) > 1:
+	sys_flag = 1
+
+if sys_flag == 1 and sys.argv[1] == '-h':
+	print 'Automatically generate freemind-based file from log file. '
+	print 'For details, please look up function: txt2mm, text-to-freemind.py'
+	print 'Usage: 1) mmupdate' + ' 2) mmupdate -d'
+	print 'Author: chenhaomails@gmail.com'
+	print 'ver 1.0'
+	sys.exit(0)
+
+main_tree = glob.glob('*.log')
+
+if len(main_tree) == 1:
+	logname = main_tree[0]
+	mmname = main_tree[0].split('.')[0] + '.mm'
+	#print type(main_tree), type(main_tree[0])
+	#print logname, mmname
+	cmd1="txt2mm " + logname + " " + mmname
+	os.system(cmd1)
+	print logname + '->' + mmname 
+	if sys_flag == 1 and sys.argv[1] == '-d': 
+		cmd2 = 'open -a freemind ' + mmname
+		os.system(cmd2) 
+else: 
+	print 'you have multiple log files, please generate manually.'
